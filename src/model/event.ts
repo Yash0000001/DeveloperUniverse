@@ -30,7 +30,7 @@ const EventSchema: Schema = new Schema<Event>({
     date: {
         type: Date,
         requied:true,
-        default: Date.now(),
+        default: Date.now,
     },
     attendees:[
         {

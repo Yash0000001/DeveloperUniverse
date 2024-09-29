@@ -49,17 +49,14 @@ export async function POST(req: Request) {
 
   // Do something with the payload
   // For this guide, you simply log the payload to the console
-  const { id } = evt.data
-  const eventType = evt.type
   if (evt.type === 'user.created') {
     const { id, email_addresses, username } = evt.data;
     const email = email_addresses[0]?.email_address || '';
   
     try {
-      // Create a user with only clerkId, username, and email
       await createUser({
         clerkId: id,
-        username: username || 'unknown',  // Fallback in case username is missing
+        username: username || 'unknown',  
         email,
       });
     } catch (err) {
@@ -69,7 +66,6 @@ export async function POST(req: Request) {
       });
     }
   }
-  
 
   return new Response('', { status: 200 })
 }
