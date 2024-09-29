@@ -1,20 +1,25 @@
 import mongoose, { Model, Document, Schema, Types } from "mongoose";
 
 export interface User extends Document {
+    clerkId: string;
     username: string;
     email: string;
     role?: 'admin' | 'user';
-    bio: string;
-    githubUsername: string;
-    skills: string[];
-    projects: Types.ObjectId;
-    eventsJoined: Types.ObjectId[];
+    bio?: string;
+    githubUsername?: string;
+    skills?: string[];
+    projects?: Types.ObjectId;
+    eventsJoined?: Types.ObjectId[];
     level?: number;
     createdAt?: Date;
     updatedAt?: Date;
 }
 
 const UserSchema: Schema = new Schema<User>({
+    clerkId:{
+        type:String,
+        required:true,
+    },
     username: {
         type: String,
         required: true,
@@ -33,9 +38,11 @@ const UserSchema: Schema = new Schema<User>({
     },
     bio: {
         type: String,
+        default: null,
     },
     githubUsername: {
         type: String,
+        default: null,
     },
     skills: [
         {
