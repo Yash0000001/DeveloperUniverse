@@ -29,7 +29,7 @@ const EventSchema: Schema = new Schema<Event>({
     },
     date: {
         type: Date,
-        requied:true,
+        required:true,
         default: Date.now,
     },
     attendees:[

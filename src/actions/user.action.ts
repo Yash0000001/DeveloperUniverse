@@ -1,5 +1,6 @@
 import UserModel from '@/model/user';
 import dbConnect from '@/lib/dbConnect';
+import ProjectModel from '@/model/projects';
 
 interface CreateUserInput {
   clerkId: string;
@@ -28,3 +29,27 @@ export const createUser = async ({ clerkId, username, email }: CreateUserInput) 
     throw error;
   }
 };
+
+export const deleteUser = async ( clerkId : string) => {
+
+  await dbConnect();
+  try {
+    const deletedUser = await UserModel.findOneAndDelete({ clerkId });
+
+    
+    if (!deletedUser) {
+      return Response.json({ message: 'User not found' }, { status: 404 });
+    }
+    await ProjectModel.updateMany(
+      { contributors: deletedUser._id },  
+      { $pull: { contributors: deletedUser._id } }
+  );
+
+    return Response.json({ message: 'User deleted successfully' }, { status: 200 });
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    return Response.json({ message: 'Internal server error' }, { status: 500 });
+  }
+
+
+}

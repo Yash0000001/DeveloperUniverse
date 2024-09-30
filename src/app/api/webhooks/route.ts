@@ -1,7 +1,7 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
-import { createUser } from '@/actions/user.action'
+import { createUser, deleteUser } from '@/actions/user.action'
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
@@ -52,11 +52,11 @@ export async function POST(req: Request) {
   if (evt.type === 'user.created') {
     const { id, email_addresses, username } = evt.data;
     const email = email_addresses[0]?.email_address || '';
-  
+
     try {
       await createUser({
         clerkId: id,
-        username: username || 'unknown',  
+        username: username || 'unknown',
         email,
       });
     } catch (err) {
@@ -66,6 +66,23 @@ export async function POST(req: Request) {
       });
     }
   }
+
+  if (evt.type === 'user.deleted') {
+    const { id } = evt.data;
+
+
+    try {
+      await deleteUser(id!);
+    } catch (err) {
+      console.error('Error deleting user in database:', err);
+      return new Response('Error deleting user', {
+        status: 500,
+      });
+    }
+  }
+  return new Response('', { status: 200 })
+
+  
 
   return new Response('', { status: 200 })
 }

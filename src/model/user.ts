@@ -1,5 +1,12 @@
 import mongoose, { Model, Document, Schema, Types } from "mongoose";
 
+
+export interface updatedUser extends Document{
+    bio?:string;
+    githubUsername?:string;
+    skills?: string[];
+    projects?: Types.ObjectId;
+}
 export interface User extends Document {
     clerkId: string;
     username: string;

@@ -4,7 +4,7 @@ export interface Projects extends Document {
     name: string;
     description: string;
     githubUrl:string;
-    contributors: Types.ObjectId;
+    contributors: Types.ObjectId[];
     visibility?: 'Public' | 'Private'; 
     createdAt?: Date;
     updatedAt?: Date;
