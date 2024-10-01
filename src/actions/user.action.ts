@@ -30,20 +30,32 @@ export const createUser = async ({ clerkId, username, email }: CreateUserInput) 
   }
 };
 
-export const deleteUser = async ( clerkId : string) => {
+export const deleteUser = async (clerkId: string) => {
 
   await dbConnect();
   try {
     const deletedUser = await UserModel.findOneAndDelete({ clerkId });
 
-    
+
     if (!deletedUser) {
       return Response.json({ message: 'User not found' }, { status: 404 });
     }
-    await ProjectModel.updateMany(
-      { contributors: deletedUser._id },  
-      { $pull: { contributors: deletedUser._id } }
-  );
+    // Find all projects where this user is a contributor
+    const projects = await ProjectModel.find({ contributors: deletedUser._id });
+
+
+    for (const project of projects) {
+      if (project.contributors.length === 1) {
+
+        await ProjectModel.findByIdAndDelete(project._id);
+      } else {
+
+        await ProjectModel.findByIdAndUpdate(
+          project._id,
+          { $pull: { contributors: deletedUser._id } }
+        );
+      }
+    }
 
     return Response.json({ message: 'User deleted successfully' }, { status: 200 });
   } catch (error) {
