@@ -7,7 +7,7 @@ import dbConnect from '@/lib/dbConnect';
 export async function POST(req: Request) {
     await dbConnect();
     try {
-        console.log("entered");
+
         const body = await req.json();
         const { username, bio, skills, githubUsername, projectData } = body;
 
@@ -16,12 +16,11 @@ export async function POST(req: Request) {
             return NextResponse.json({ message: 'Username is required' }, { status: 400 });
         }
 
-        console.log("finding user")
+
         const user = await UserModel.findOne({ username });
         if (!user) {
             return NextResponse.json({ message: 'User not found' }, { status: 404 });
         }
-        console.log("user found");
 
         const updateData: any = {};
         if (bio) updateData.bio = bio;
@@ -46,8 +45,8 @@ export async function POST(req: Request) {
             });
 
             const savedProject = await newProject.save();
-            if(!savedProject){
-                return NextResponse.json({message:"Project not updated"},{status:500})
+            if (!savedProject) {
+                return NextResponse.json({ message: "Project not updated" }, { status: 500 })
             }
             const projectId = savedProject._id;
 
@@ -73,7 +72,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({
             message: 'User updated successfully',
-            data:updatedUser
+            data: updatedUser
         }, { status: 200 });
 
     } catch (error) {

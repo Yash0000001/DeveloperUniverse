@@ -7,7 +7,7 @@ export async function GET() {
 
     try {
 
-        const users = await UserModel.find({}).populate('projects');
+        const users = await UserModel.find({}).populate('projects').populate('eventsJoined');
 
         const totalUsersResult = await UserModel.aggregate([
             {

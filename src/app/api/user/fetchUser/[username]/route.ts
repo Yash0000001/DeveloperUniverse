@@ -10,7 +10,7 @@ export async function GET(req: Request, { params }: { params: { username: string
     try {
         console.log("Fetching user with username:", username);
         
-        const user = await UserModel.findOne({ username }).populate('projects'); 
+        const user = await UserModel.findOne({ username }).populate('projects').populate('eventsJoined', 'name date description'); 
         
         if (!user) {
             return NextResponse.json({ message: 'User not found' }, { status: 404 });

@@ -1,9 +1,9 @@
 import mongoose, { Model, Document, Schema, Types } from "mongoose";
 
 
-export interface updatedUser extends Document{
-    bio?:string;
-    githubUsername?:string;
+export interface updatedUser extends Document {
+    bio?: string;
+    githubUsername?: string;
     skills?: string[];
     projects?: Types.ObjectId;
 }
@@ -17,15 +17,17 @@ export interface User extends Document {
     skills?: string[];
     projects?: Types.ObjectId;
     eventsJoined?: Types.ObjectId[];
+    discussions?: mongoose.Schema.Types.ObjectId[];
+    comments?:mongoose.Schema.Types.ObjectId[];
     level?: number;
     createdAt?: Date;
     updatedAt?: Date;
 }
 
 const UserSchema: Schema = new Schema<User>({
-    clerkId:{
-        type:String,
-        required:true,
+    clerkId: {
+        type: String,
+        required: true,
     },
     username: {
         type: String,
@@ -60,12 +62,27 @@ const UserSchema: Schema = new Schema<User>({
         {
             type: Types.ObjectId,
             ref: 'Project',
+            default: null,
         }
     ],
     eventsJoined: [
         {
             type: Types.ObjectId,
             ref: 'Event',
+            default: null,
+        }
+    ],
+    discussions: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Discussion',
+            default: null,
+        }
+    ],
+    comments: [
+        { 
+            type: Schema.Types.ObjectId, 
+            ref: 'Comment' 
         }
     ],
     level: {
@@ -83,6 +100,6 @@ const UserSchema: Schema = new Schema<User>({
     },
 })
 
-const UserModel: Model<User> = mongoose.models.User || mongoose.model<User>("User",UserSchema);
+const UserModel: Model<User> = mongoose.models.User || mongoose.model<User>("User", UserSchema);
 
 export default UserModel;

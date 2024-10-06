@@ -4,14 +4,15 @@ import { UserProfile } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
 const page = async () => {
+  const user = await currentUser();  
   const { userId } = auth();  
   
 
-  if (!userId) {  
+  if (!userId && !user) {  
     redirect("/");
   }
 
-  const user = await currentUser();  
+  
 
   return (
     <div className='flex items-center justify-center mt-6'>

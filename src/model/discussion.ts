@@ -1,39 +1,15 @@
 import mongoose, { Model, Document, Schema, Types } from "mongoose";
 
-export interface Comment extends Document {
-    user: Types.ObjectId[];
-    content: string;
-    createdAt: Date;
-}
-
-
 export interface Discussion extends Document {
     title: string;
     content: string;
-    createdBy: Types.ObjectId[];
-    comments: Comment[];
+    createdBy: Types.ObjectId;
+    comments: mongoose.Schema.Types.ObjectId[];
     upvotes: number;
+    downvotes: number;
     createdAt: Date;
     updatedAt: Date;
 }
-
-const commentSchema = new Schema<Comment>({
-    user: [
-        {
-            type: Types.ObjectId,
-            ref: 'User',
-            required: true
-        }
-    ],
-    content: {
-        type: String,
-        required: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
-});
 
 
 const discussionSchema = new Schema<Discussion>(
@@ -48,16 +24,33 @@ const discussionSchema = new Schema<Discussion>(
             type: String,
             required: true,
         },
-        createdBy: [{
-            type: Types.ObjectId,
+        createdBy: {
+            type: Schema.Types.ObjectId,
             ref: 'User',
             required: true,
-        }],
-        comments: [commentSchema],
+        },
+        comments: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Comment'
+            }
+        ],
         upvotes: {
             type: Number,
             default: 0,
         },
+        downvotes: { 
+            type: Number, 
+            default: 0 
+        },
+        createdAt: { 
+            type: Date, 
+            default: Date.now, 
+        },
+        updatedAt: {
+            type: Date,
+            default: Date.now,
+        }
     },
     {
         timestamps: true,

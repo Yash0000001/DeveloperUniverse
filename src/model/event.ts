@@ -1,12 +1,11 @@
-import mongoose, { Model, Document, Schema, Types } from "mongoose";
-
+import mongoose, { Document, Schema, Types } from "mongoose";
 
 export interface Event extends Document {
     name: string;
     description: string;
     organizer?: string;
-    date?: Date;
-    attendees: Types.ObjectId[];
+    date: Date;
+    attendees?: Types.ObjectId[];
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -24,18 +23,16 @@ const EventSchema: Schema = new Schema<Event>({
     },
     organizer: {
         type: String,
-        required: true,
-        default: 'Apple'
+        default: 'Organizer Apple khane gya hai'
     },
     date: {
         type: Date,
-        required:true,
-        default: Date.now,
+        required: true,
     },
-    attendees:[
+    attendees: [
         {
-            type:Types.ObjectId,
-            ref : 'User'
+            type: Types.ObjectId,
+            ref: 'User'  // Ensure this references the correct model
         }
     ],
     createdAt: {
@@ -47,7 +44,7 @@ const EventSchema: Schema = new Schema<Event>({
         type: Date,
         default: Date.now,
     },
-})
+});
 
-const EventModel: Model<Event> = mongoose.models.Event || mongoose.model<Event>("Event",EventSchema);
+const EventModel = mongoose.models.Event || mongoose.model<Event>("Event", EventSchema);
 export default EventModel;
