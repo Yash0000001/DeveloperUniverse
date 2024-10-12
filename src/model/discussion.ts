@@ -4,11 +4,11 @@ export interface Discussion extends Document {
     title: string;
     content: string;
     createdBy: Types.ObjectId;
-    comments: mongoose.Schema.Types.ObjectId[];
-    upvotes: number;
-    downvotes: number;
-    createdAt: Date;
-    updatedAt: Date;
+    comments?: mongoose.Schema.Types.ObjectId[];
+    upvotes?: number;
+    downvotes?: number;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 
@@ -39,13 +39,14 @@ const discussionSchema = new Schema<Discussion>(
             type: Number,
             default: 0,
         },
-        downvotes: { 
-            type: Number, 
-            default: 0 
+        downvotes: {
+            type: Number,
+            default: 0
         },
-        createdAt: { 
-            type: Date, 
-            default: Date.now, 
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            immutable: true,
         },
         updatedAt: {
             type: Date,

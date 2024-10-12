@@ -4,7 +4,7 @@ export interface Event extends Document {
     name: string;
     description: string;
     organizer?: string;
-    date: Date;
+    date?: Date;
     attendees?: Types.ObjectId[];
     createdAt?: Date;
     updatedAt?: Date;
@@ -35,15 +35,9 @@ const EventSchema: Schema = new Schema<Event>({
             ref: 'User'  // Ensure this references the correct model
         }
     ],
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        immutable: true,
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now,
-    },
+   
+},{
+    timestamps:true
 });
 
 const EventModel = mongoose.models.Event || mongoose.model<Event>("Event", EventSchema);

@@ -65,13 +65,11 @@ const UserSchema: Schema = new Schema<User>({
             default: null,
         }
     ],
-    eventsJoined: [
-        {
-            type: Types.ObjectId,
-            ref: 'Event',
-            default: null,
-        }
-    ],
+    eventsJoined: {
+        type:[Types.ObjectId],
+        ref:"Event",
+        default:[]
+    },
     discussions: [
         {
             type: Schema.Types.ObjectId,
