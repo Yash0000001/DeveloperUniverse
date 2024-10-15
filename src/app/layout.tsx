@@ -34,13 +34,14 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <ClerkLoading>
-            <div>Loading...</div>
+            <div className="flex items-center justify-center">Loading...</div>
           </ClerkLoading>
           <ClerkLoaded>
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-full mx-auto">
               <div className="flex flex-col h-screen">
                 <Navbar />
                 {children}
+                {/* <Footer/> */}
               </div>
             </div>
           </ClerkLoaded>

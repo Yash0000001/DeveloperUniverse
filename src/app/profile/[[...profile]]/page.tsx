@@ -15,8 +15,7 @@ const page = async () => {
   
 
   return (
-    <div className='flex items-center justify-center mt-6'>
-      <h1 className='text-2xl'>{user?.username}</h1>
+    <div className='flex items-center justify-center p-20 bg-[#120727]'>
       <UserProfile />
     </div>
   );
