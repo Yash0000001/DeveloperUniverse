@@ -1,4 +1,5 @@
 "use client";
+import { AuroraBackgroundDemo } from "@/components/Aurora";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -24,11 +25,11 @@ export default function Home() {
           <div className="text-md mb-7">
             Step into the universe of developers, where ideas ignite,
             collaboration thrives, and coding excellence is celebrated. Whether
-            you are a seasoned pro or a budding coder, Developer Universe is your
-            space to learn, build, and leave your mark.
+            you are a seasoned pro or a budding coder, Developer Universe is
+            your space to learn, build, and leave your mark.
           </div>
           <div
-            className="text-xl bg-[#080310] rounded-full px-4 py-6 w-3/4 flex items-center justify-center cursor-pointer"
+            className="text-xl bg-[#A78BFA] hover:drop-shadow-white-md rounded-full px-4 py-6 w-3/4 flex items-center justify-center cursor-pointer"
             onClick={() => router.push("/events")}
           >
             Join the Community | Explore Events
@@ -45,14 +46,14 @@ export default function Home() {
       </div>
 
       {/* section 2 */}
-      <div className="flex flex-col items-center w-full mb-9">
+      <div className="flex flex-col items-center w-full mb-16">
         <div className="text-5xl leading-snug mb-4 text-[#A78BFA] drop-shadow-white-md font-bold">
           What we have for You?
         </div>
         <div className="text-xl leading-snug mb-16">
           Explore the Key Features of Developer Universe
         </div>
-        <div className="flex flex-row w-full mb-16 gap-8 items-center">
+        <div className="flex flex-row w-full mb-16 gap-8 items-center border-t-2 p-8 border-r-2">
           <div className="flex flex-col w-1/2 relative z-0">
             <div className="absolute -top-10 left-10 w-1/2 aspect-square -z-10 opacity-40 bg-red-400 rounded-full blur-3xl"></div>
             <div className="text-xl mb-7">
@@ -94,7 +95,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-row-reverse w-full mb-16 gap-8 items-center">
+        <div className="flex flex-row-reverse w-full mb-16 gap-8 items-center border-t-2 p-8 border-l-2">
           <div className="flex flex-col w-1/2 relative z-0">
             <div className="absolute -top-10 left-10  w-1/2 aspect-square -z-10 opacity-40 bg-green-500 rounded-full blur-3xl"></div>
             <div className="text-xl mb-7">
@@ -130,7 +131,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-row w-full mb-16 gap-8 items-center">
+        <div className="flex flex-row w-full mb-16 gap-8 items-center border-t-2 p-8 border-r-2">
           <div className="flex flex-col w-1/2 relative z-0">
             <div className="absolute -top-10 left-10  w-1/2 aspect-square -z-10 opacity-40 bg-white rounded-full blur-3xl"></div>
             <div className="text-xl mb-7">
@@ -166,7 +167,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-row-reverse w-full mb-16 gap-8 items-center">
+        <div className="flex flex-row-reverse w-full mb-16 gap-8 items-center border-t-2 p-8 border-l-2">
           <div className="flex flex-col w-1/2 relative z-0">
             <div className="absolute -top-10 left-10  w-1/2 aspect-square -z-10 opacity-40 bg-yellow-500 rounded-full blur-3xl"></div>
             <div className="text-xl mb-7">
@@ -201,6 +202,11 @@ export default function Home() {
             </CardContainer>
           </div>
         </div>
+      </div>
+
+      {/* section 3 */}
+      <div className="mb-16">
+        <AuroraBackgroundDemo />
       </div>
     </div>
   );

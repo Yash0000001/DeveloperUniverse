@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar";
 import { dark } from "@clerk/themes";
+import Footer from "@/components/Footer";
 
 
 const geistSans = localFont({
@@ -41,7 +42,7 @@ export default function RootLayout({
               <div className="flex flex-col h-screen">
                 <Navbar />
                 {children}
-                {/* <Footer/> */}
+                <Footer/>
               </div>
             </div>
           </ClerkLoaded>
