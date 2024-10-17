@@ -3,11 +3,12 @@ import { AuroraBackgroundDemo } from "@/components/Aurora";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import discord from "@/app/discord.png"
 
 export default function Home() {
   const router = useRouter();
   return (
-    <div className="flex flex-col p-8 bg-[#120727]">
+    <div className="flex flex-col p-8 pt-20 bg-[#120727]">
       {/* section 1 */}
       <div className="flex flex-row w-full mb-20 mt-20">
         <div className="flex flex-col w-1/2">
@@ -136,7 +137,7 @@ export default function Home() {
             <div className="absolute -top-10 left-10  w-1/2 aspect-square -z-10 opacity-40 bg-white rounded-full blur-3xl"></div>
             <div className="text-xl mb-7">
               <span className="text-3xl text-[#A78BFA] drop-shadow-white-md">
-                Profile Section::{" "}
+                Profile Section:{" "}
               </span>{" "}
               Your Developer Journey, Your Way
             </div>
@@ -207,6 +208,35 @@ export default function Home() {
       {/* section 3 */}
       <div className="mb-16">
         <AuroraBackgroundDemo />
+      </div>
+
+      {/* section 4 */}
+      <div className="mb-16 flex flex-row gap-8">
+        <div className="flex flex-col w-1/2">
+          <div className="text-5xl leading-snug mb-4 font-bold">
+            Experience the{" "}
+            <span className="text-[#A78BFA] drop-shadow-white-md font-bold">
+              Developer Universe Community
+            </span>
+          </div>
+          <div className="font-semibold text-xl mb-7">
+            <span className="text-[#A78BFA]">Join</span> for quests, support,
+            memes, and more!
+          </div>
+          <div className="text-xl bg-[#A78BFA] hover:drop-shadow-white-md rounded-full px-4 py-6 w-3/4 flex items-center justify-center cursor-pointer">
+            Join Our Discord Server
+          </div>
+        </div>
+        <div className="w-1/2 ">
+          <Image
+          src={discord}
+          title="Discord"
+          width={500}
+          height={500}
+          alt="Discord Image"
+          className="rounded-md opacity-70"
+          />
+        </div>
       </div>
     </div>
   );

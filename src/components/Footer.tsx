@@ -65,6 +65,8 @@ const Footer = () => {
                 <Image
                   src="/icons/twitter.svg"
                   alt="Twitter"
+                  width={100}
+                  height={100}
                   className="w-6 h-6"
                 />
               </a>
@@ -72,6 +74,8 @@ const Footer = () => {
                 <Image
                   src="/icons/linkedin.svg"
                   alt="LinkedIn"
+                  width={100}
+                  height={100}
                   className="w-6 h-6"
                 />
               </a>
@@ -79,6 +83,8 @@ const Footer = () => {
                 <Image
                   src="/icons/github.svg"
                   alt="GitHub"
+                  width={100}
+                  height={100}
                   className="w-6 h-6"
                 />
               </a>

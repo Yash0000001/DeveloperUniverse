@@ -47,25 +47,25 @@ const Navbar = () => {
         </div>
         <div className="flex items-center gap-8">
           <Link href={"/events"}>
-            <li className="nav-item font-semibold">Events</li>
+            <li className="nav-item font-semibold ">Events</li>
           </Link>
           <Link href={"/leaderboard"}>
-            <li className="nav-item font-semibold">Leaderboard</li>
+            <li className="nav-item font-semibold ">Leaderboard</li>
           </Link>
           <Link href={"/discussion"}>
-            <li className="nav-item font-semibold">Discussion Forum</li>
+            <li className="nav-item font-semibold ">Discussion Forum</li>
           </Link>
           <Link href={"/dashboard"}>
-            <li className="nav-item font-semibold">Dashboard</li>
+            <li className="nav-item font-semibold ">Dashboard</li>
           </Link>
         </div>
         {!userId || !isLoaded ? (
           <div className="flex gap-6 items-center">
             <Link href={"/sign-in"}>
-              <li className="nav-item font-semibold">Login</li>
+              <li className="font-semibold rounded-full bg-green-300 hover:bg-green-500 py-2 px-4">Login</li>
             </Link>
             <Link href={"/sign-up"}>
-              <li className="nav-item font-semibold">Sign Up</li>
+              <li className="font-semibold rounded-full bg-red-300 hover:bg-red-500 py-2 px-4">Sign Up</li>
             </Link>
           </div>
         ) : (
